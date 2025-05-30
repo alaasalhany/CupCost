@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    function calculateTotal(event) {
+      event.preventDefault();
+      let drinkPrice = parseFloat(document.getElementById("coffeetype").value);
+      let sizeMultiplier = parseFloat(
+        document.querySelector('input[name="csize"]:checked').value
+      );
+      let numberOfCups = parseInt(document.getElementById("cups").value);
+      let addCaramel = document.getElementById("caramel").checked;
+      let caramelPrice;
+      if (addCaramel) {
+        caramelPrice = 7;
+      } else {
+        caramelPrice = 0;
+      }
+      let total = (drinkPrice * sizeMultiplier + caramelPrice) * numberOfCups;
+      document.getElementById("paid").value = total.toFixed(2);
+    }
+  </script>
+  <body style="background-color: rgb(6, 0, 0); padding: 70px">
+    <form onsubmit="calculateTotal(event)"
+      style=" background-image: url('img/w7.jpg'); background-repeat: no-repeat;background-size: cover;
+        width: 60%;
+        height: 85vh;
+        border: 10px solid rgb(163, 110, 3);
+        margin-left:25%;">
+      <div style="position: relative; top: 25vh;left: 150px;font-size: 30px;color: white; ">
+        <div style="margin-top: 15px">
+          <label style="color:rgb(235, 170, 5); margin-right: 20px" for="coffeetype">Beverage</label >
+            <select name="coffeetype" id="coffeetype" style="width: 150px; height: 28px;">
+            <option value="74" selected>LATTE</option>
+            <option value="78">CAPPUCINO</option>
+            <option value="84">FLAT WHİTE</option>
+          </select>
+        </div>
+        <div style="margin-top: 20px; display: flex; gap: 20px">
+          <label style="color:rgb(235, 170, 5)">Cup Size</label>
+          <div>
+            <span
+              ><input type="radio" name="csize" id="csize" value="1" /><label
+                >REGULAR</label
+              ></span
+            ><br /><span
+              ><input type="radio" name="csize" id="csize2" value="1.3" /><label
+                >GRAND</label
+              ></span
+            ><br /><span
+              ><input type="radio" name="csize" id="radio3" value="1.5" /><label
+                >EXTRA</label
+              ></span>
+          </div>
+        </div>
+        <div style="margin-top: 20px">
+          <label style="color:rgb(235, 170, 5); margin-right: 75px" for="cups" >Cups</label>
+          <input type="number" id="cups" name="cups" min="1" max="5" step="1" value="1" style="width: 130px; height: 20px;" />
+
+        </div>
+        <div style="margin-top: 20px">
+            <label style="color:rgb(235, 170, 5); margin-right: 30px;  font-size: 30px" for="caramel">Caramel</label>
+            <input type="checkbox" name="caramel" id="caramel" value="caramel" style="transform: scale(1.5); border: 2px solid #fc6; padding: 5px; margin: 10px;" />
+          </div>
+          
+        <div style="margin-top: 20px">
+          <label style="color:rgb(235, 170, 5) ; margin-right: 85px">Paid</label>
+          <input type="text" id="paid" value="0" size="15" style="width: 130px; height: 20px;" />
+        </div>
+        <button style="margin-left: 150px; margin-top: 20px; padding: 10px  ; font-size: 24px;">
+            Calculate
+          </button>
+          
+      </div>
+    </form>
+  </body>
+  <style></style>
+</html>
